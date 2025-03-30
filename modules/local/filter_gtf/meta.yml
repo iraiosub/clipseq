@@ -1,0 +1,25 @@
+name: filter_gtf_by_trancript
+description: Filters GTF by transcripts.
+tools:
+input:
+  - gtf:
+      type: file
+      description: A GTF annotation file
+  - transcript:
+      type: file
+      description: A text file with representative transcripts
+output:
+  - representative_transcript_filtered_gtf:
+      type: file
+      description: GTF
+      pattern: "*.gtf"
+  - log:
+      type: file
+      description: Log file
+      pattern: "*.log"
+  - versions:
+      type: file
+      description: File containing software versions
+      pattern: "versions.yml"
+authors:
+  - "@iraiosub"

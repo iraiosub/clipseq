@@ -1,4 +1,4 @@
-process PREPARE_REPRESENTATIVE_TRANSCRIPT {
+process FILTER_GTF_BY_TRANSCRIPT {
     tag "$gtf"
     label "process_single"
 
@@ -12,11 +12,9 @@ process PREPARE_REPRESENTATIVE_TRANSCRIPT {
     tuple val(meta), path(transcript)
 
     output:
-    tuple val(meta), path("*_representative_transcript.txt")                 ,emit: representative_transcript
-    tuple val(meta), path("*_representative_transcript.fai")                 ,emit: representative_transcript_fai
-    tuple val(meta), path("*_representative_transcript.gtf")                 ,emit: representative_transcript_gtf
-    path  "*.log"                                                            ,emit: log
-    path  "versions.yml"                                                     ,emit: versions
+    tuple val(meta), path("*_representative_transcript_filtered.gtf")       ,emit: filtered_gtf
+    path  "*.log"                                                           ,emit: log
+    path  "versions.yml"                                                    ,emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -24,5 +22,5 @@ process PREPARE_REPRESENTATIVE_TRANSCRIPT {
     shell:
     process_name = task.process
     output       = task.ext.output ?: "${gtf.simpleName}_representative_transcript"
-    template 'prepare_representative_transcript.py'
+    template 'filter_gtf_by_transcripts.py'
 }

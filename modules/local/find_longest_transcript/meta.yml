@@ -1,19 +1,30 @@
-name: clipseq_find_longest_transcript
-description: Calculates a table of CDS lengths for each protein coding transcript and selects the largest one.
+name: prepare_representative_trancript
+description: Validates list of provided transcripts if provided, otherwise calculates a table of transcript lengths for each gene and selects the longest one.
 tools:
 input:
   - gtf:
       type: file
       description: A GTF annotation file
-output:
-  - longest_transcript:
+  - transcript:
       type: file
-      description: File that contains the length of the longest transcript
+      description: A text file with representative transcripts
+output:
+  - representative_transcript:
+      type: file
+      description: File that contains the ID of the representative transcripts
       pattern: "*.txt"
-  - transcriptome_index:
+  - representative_transcript_fai:
       type: file
       description: List of the transcript lengths
       pattern: "*.fai"
+  - representative_transcript_gtf:
+      type: file
+      description: GTF
+      pattern: "*.gtf"
+  - log:
+      type: file
+      description: Log file
+      pattern: "*.log"
   - versions:
       type: file
       description: File containing software versions
@@ -21,3 +32,5 @@ output:
 authors:
   - "@chris-cheshire"
   - "@charlotteanne"
+  - "@iraiosub"
+  - "@kkuret"
