@@ -417,8 +417,8 @@ workflow CLIPSEQ {
         ch_ncrna_k1_crosslink_GROUP_HASGROUP_bed       = NCRNA_RESOLVE_GROUPS_AND_CROSSLINKS.out.crosslink_GROUP_HASGROUP
 
         // If filtering of GTF by transcripts is enabled, use the filtered GTF and its resolved regions, if not use regions GTF made by icount-mini
-        ch_regions_used = params.filter_gtf_by_transcripts ? ch_regions_resolved_gtf : ch_regions_gtf
-        ch_gtf_used = params.filter_gtf_by_transcripts ? ch_filtered_gtf : ch_gtf
+        ch_regions_used = params.use_filtered_gtf ? ch_regions_resolved_gtf : ch_regions_gtf
+        ch_gtf_used = params.use_filtered_gtf ? ch_filtered_gtf : ch_gtf
 
         ICOUNTMINI_SUMMARY (
             ch_genome_crosslink_group_resolved_bed,
